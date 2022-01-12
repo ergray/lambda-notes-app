@@ -6,15 +6,11 @@ export default class FrontendStack extends sst.Stack {
 
     const { api, auth, bucket } = props;
 
+    // Define our React app
     const site = new sst.ReactStaticSite(this, "ReactSite", {
-      customDomain:
-        scope.stage === "prod"
-        ? {
-          domainName: "temporarystratum.com",
-          domainAlias: "www.temporarystratum.com",
-        }
-        : undefined,
       path: "frontend",
+      customDomain: scope.stage === "prod" ? "demo.temporarystratum.com" : undefined,
+      // Pass in our environment variables
       environment: {
         REACT_APP_API_URL: api.customDomainUrl || api.url,
         REACT_APP_REGION: scope.region,
@@ -26,6 +22,7 @@ export default class FrontendStack extends sst.Stack {
       },
     });
 
+    // Show the url in the output
     this.addOutputs({
       SiteUrl: site.customDomainUrl || site.url,
     });
