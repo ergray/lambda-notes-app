@@ -1,5 +1,7 @@
 const config = {
 
+  STRIPE_KEY: "pk_test_51KFq1xH6T72IG0JRjiis9mWb05I5zRFxbQIUm8wpPCuPhmsunzBuDrmGT5zT9XeoYTKtd9As5wO9yL4xDzcoQX4o00cbpK3AHP",
+
   s3: {
     REGION: process.env.REACT_APP_REGION,
     BUCKET: process.env.REACT_APP_BUCKET,
