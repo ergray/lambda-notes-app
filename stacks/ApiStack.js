@@ -11,6 +11,8 @@ export default class ApiStack extends sst.Stack {
 
     //create the api
     this.api = new sst.Api(this, "Api", {
+      customDomain:
+        scope.stage === "prod" ? "api.temporarystratum.com" : undefined,
       defaultAuthorizationType: "AWS_IAM",
       defaultFunctionProps: {
         environment: {
@@ -33,7 +35,7 @@ export default class ApiStack extends sst.Stack {
 
     //show the api endpoint in the output
     this.addOutputs({
-      ApiEndpoint: this.api.url,
+      ApiEndpoint: this.api.customDomainUrl || this.api.url,
     })
   }
 }
